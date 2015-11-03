@@ -252,3 +252,27 @@ snippet ja
 	func (p *$1) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&struct{ *$1Alias }{(*$1Alias)(p)})
 	}
+snippet tests
+	tests := []struct {
+		${1}
+	}{
+		{${2}},
+	}
+	for i, tt := range tests {
+		${3}
+	}
+snippet gotv
+	got := ${1}
+	if got != tt.${2:want} {
+		t.Errorf("%d. ${3} = %v; want %v", i, got, tt.$2)
+	}
+snippet gotd
+	got := ${1}
+	if got != tt.${2:want} {
+		t.Errorf("%d. ${3} = %d; want %d", i, got, tt.$2)
+	}
+snippet gotq
+	got := ${1}
+	if got != tt.${2:want} {
+		t.Errorf("%d. ${3} = %q; want %q", i, got, tt.$2)
+	}
